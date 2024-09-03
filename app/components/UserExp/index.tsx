@@ -1,19 +1,19 @@
 
 "use client"
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../Button'
 import { BsMoonStars, BsSun } from 'react-icons/bs'
 import Link from 'next/link'
 import { signOut, useSession } from 'next-auth/react'
-import { ThemeContext } from '@/app/context/lightdark'
+import { useRouter } from 'next/navigation'
 
 const UserExp = () => {
-    const { state, dispatch } = useContext(ThemeContext);
+
     const { status, data: session } = useSession();
 
     const [isDarkMode, setIsDarkMode] = useState<boolean>();
-
+    const router = useRouter();
 
     useEffect(() => {
         const storedDarkMode = localStorage.getItem('darkMode');
@@ -35,6 +35,10 @@ const UserExp = () => {
         setIsDarkMode(newDarkMode);
         localStorage.setItem('darkMode', JSON.stringify(newDarkMode));
     };
+
+    const handleLogOut = async () => {
+        signOut({ redirect: false }).then(() => router.push("/login"))
+    }
 
     return (
 
@@ -58,7 +62,7 @@ const UserExp = () => {
             </Button>
             {status === "authenticated" ? (
                 <>
-                    <button className="text-md whitespace-nowrap" type="button" onClick={() => signOut()}>
+                    <button className="text-md whitespace-nowrap" type="button" onClick={handleLogOut}>
                         Sign Out
                     </button>
                 </>

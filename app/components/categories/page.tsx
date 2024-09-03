@@ -4,13 +4,12 @@
 import { BlogInterface } from '@/app/blog/create/page';
 import { getAllBlog } from '@/app/hooks/getAllBlog';
 import Link from 'next/link';
-import React from 'react'
 
 
 
 const Categories = async () => {
 
-    const { data } = await getAllBlog();
+    const { data } = await getAllBlog() || [];
 
     let uniqueValue: string[] = [];
     data!?.forEach((element: BlogInterface) => {

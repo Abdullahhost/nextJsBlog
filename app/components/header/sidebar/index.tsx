@@ -1,9 +1,7 @@
 "use client"
 
 import {
-  BsCodeSlash,
   BsGithub,
-  BsHouse,
   BsPencilSquare,
   BsPeople,
   BsPersonLinesFill,

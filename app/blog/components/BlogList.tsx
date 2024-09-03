@@ -23,7 +23,7 @@ const BlogList = ({ data }: any) => {
 
 	return (
 		<>
-			{data?.map((ele: BlogInterface) => {
+			{data!?.map((ele: BlogInterface) => {
 				return (
 					<MotionDiv
 						variants={item}

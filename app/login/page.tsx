@@ -94,16 +94,17 @@ const page = () => {
     }
   };
 
-  const socialAction = (action: string) => {
-    signIn(action, { redirect: false })
-      .then((callback) => {
-        if (callback?.error) {
-          toast.error("Invalid credentials");
-        }
-        if (callback?.ok && !callback?.error) {
-          toast.success("Logged In!");
-        }
-      })
+  const socialAction = async (action: string) => {
+    // try{
+
+    // }catch(err) {
+
+    // }finally {
+
+    // }
+    await signIn(action, { redirect: false }).then(() => { router.push("/") })
+
+    router.push("/")
   };
 
   return (
