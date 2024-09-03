@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 const Categories = async () => {
 
-    const { data } = await getAllBlog() || [];
+    const { data } = await getAllBlog();
 
     let uniqueValue: string[] = [];
     data!?.forEach((element: BlogInterface) => {

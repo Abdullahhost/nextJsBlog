@@ -1,6 +1,6 @@
 export const getAllBlog = async () => {
     try {
-        const res = await fetch("http://localhost:3000/api/blog", {
+        const res = await fetch("https://blog-app-mamun.vercel.app/api/blog", {
             cache: "no-store",
         });
 
@@ -17,7 +17,7 @@ export const getAllBlog = async () => {
 
 export const getCategoriesBlog = async (role: string) => {
     try {
-        const res = await fetch(`http://localhost:3000/api/blog/categories/${role}`, {
+        const res = await fetch(`https://blog-app-mamun.vercel.app/api/blog/categories/${role}`, {
             cache: "no-store",
         });
 
@@ -34,7 +34,7 @@ export const getCategoriesBlog = async (role: string) => {
 
 export const getSingleBlog = async (title: string) => {
     try {
-        const res = await fetch(`http://localhost:3000/api/blog/${title}`, {
+        const res = await fetch(`https://blog-app-mamun.vercel.app/api/blog/${title}`, {
             cache: "no-store",
         });
 
