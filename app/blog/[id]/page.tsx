@@ -2,7 +2,6 @@
 import Image from "next/image";
 
 import SideBar from "@/app/components/header/sidebar";
-import Topbar from "@/app/components/header/topbar";
 import Categories from "@/app/components/categories/page";
 
 import { BsCalendar3 } from "react-icons/bs";
@@ -22,9 +21,9 @@ const page = async ({ params }: { params: { id: string } }) => {
         {/* <Topbar /> */}
         <div className="px-6 flex items-start gap-6 mt-10 flex-wrap lg:flex-nowrap">
           <div className="w-full">
-            {data?.length > 0 ? <>
+            {data!?.length > 0 ? <>
 
-              {data?.map((ele: BlogInterface) => {
+              {data!?.map((ele: BlogInterface) => {
                 return <div key={ele?.title}>
 
                   <h2 className="font-bold leading-[2rem] text-xl text-start mb-6 dark:text-[#eeeeee] border-slate-200 border-b py-1 uppercase inline-block text-slate-500 dark:border-slate-500">
