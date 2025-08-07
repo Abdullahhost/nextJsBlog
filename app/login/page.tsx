@@ -62,6 +62,7 @@ const page = () => {
             if (data.status === 201) {
               toast.success("User Create Successfully. Now click Submit button again to login");
               setVariant("LOGIN")
+              router.push("/");
             } else {
               toast.success("Chelck Again your credentials")
             }
@@ -95,16 +96,7 @@ const page = () => {
   };
 
   const socialAction = async (action: string) => {
-    // try{
-
-    // }catch(err) {
-
-    // }finally {
-
-    // }
     await signIn(action, { redirect: false }).then(() => { router.push("/") })
-
-    router.push("/")
   };
 
   return (

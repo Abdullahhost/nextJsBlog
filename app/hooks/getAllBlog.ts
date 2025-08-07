@@ -1,6 +1,8 @@
+import { configApi } from "../config/apiBaseUrl";
+
 export const getAllBlog = async () => {
     try {
-        const res = await fetch("https://blog-app-mamun.vercel.app/api/blog", {
+        const res = await fetch(configApi.ALL_BLOG_API, {
             cache: "no-store",
         });
 
@@ -17,7 +19,7 @@ export const getAllBlog = async () => {
 
 export const getCategoriesBlog = async (role: string) => {
     try {
-        const res = await fetch(`https://blog-app-mamun.vercel.app/api/blog/categories/${role}`, {
+        const res = await fetch(`${configApi.CATEGORIES_BLOG}/${role}`, {
             cache: "no-store",
         });
 
@@ -34,7 +36,7 @@ export const getCategoriesBlog = async (role: string) => {
 
 export const getSingleBlog = async (title: string) => {
     try {
-        const res = await fetch(`https://blog-app-mamun.vercel.app/api/blog/${title}`, {
+        const res = await fetch(`${configApi.ALL_BLOG_API}/${title}`, {
             cache: "no-store",
         });
 

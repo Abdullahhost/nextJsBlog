@@ -5,6 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
 import bcrypt from "bcrypt";
+import { NextResponse } from "next/server";
 
 export const authOptions: NextAuthOptions = {
     // Configure one or more authentication providers
@@ -34,6 +35,7 @@ export const authOptions: NextAuthOptions = {
                     }
 
                     return user;
+                    
                 } catch (err) {
                     console.log("Error", err);
                 }
@@ -85,7 +87,6 @@ export const authOptions: NextAuthOptions = {
                         return user;
                     }
                     return user;
-
                 } catch (err: any) {
                     console.log(err);
                 }
@@ -108,13 +109,7 @@ export const authOptions: NextAuthOptions = {
             }
             return session;
         },
-        // async redirect({ url, baseUrl }) {
-        //     // Allows relative callback URLs
-        //     if (url.startsWith("/")) return `${baseUrl}${url}`
-        //     // Allows callback URLs on the same origin
-        //     else if (new URL(url).origin === baseUrl) return url
-        //     return baseUrl
-        // }
+
     },
 };
 
