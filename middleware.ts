@@ -1,25 +1,29 @@
-
-import {type NextRequest, NextResponse } from "next/server";
-
+import { NextResponse, type NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
-    const path = req.nextUrl.pathname;
+  const path = req.nextUrl.pathname;
 
-    const isAuthenticated =  req.cookies.get("next-auth.session-token");
-    const publicPath = path === "/login";
+  // Get both possible cookie names
+  const token =
+    req.cookies.get("next-auth.session-token")?.value ||
+    req.cookies.get("__Secure-next-auth.session-token")?.value;
 
-    if (publicPath && isAuthenticated) {
-        return NextResponse.redirect(new URL("/", req.nextUrl));
-    }
-    if (!publicPath && !isAuthenticated) {
-        return NextResponse.redirect(new URL("/login", req.nextUrl));
-    }
+  const isPublicPath = path === "/login";
 
+  if (isPublicPath && token) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+
+  if (!isPublicPath && !token) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
+
+  return NextResponse.next();
 }
+
 export const config = {
-    matcher: ["/", "/login", "/blog/create"]
-}
-
+  matcher: ["/", "/login", "/blog/create"],
+};
 
 
 

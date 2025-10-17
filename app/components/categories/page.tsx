@@ -12,7 +12,6 @@ const Categories = async () => {
     const { data } = await getAllBlog();
 
     let uniqueValue: string[] = [];
-    console.log(data)
     data!?.forEach((element: BlogInterface) => {
         if (!uniqueValue.includes(element?.role)) {
             uniqueValue.push(element?.role)

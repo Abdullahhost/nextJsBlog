@@ -48,8 +48,6 @@ export default async function Home({ searchParams }: any) {
 
   const allData = await getAllBlog();
 
-  console.log(allData)
-
   const filteredData = allData?.data?.filter((item: any) => item?.title.toLowerCase().includes(searchParams?.query))
 
 
