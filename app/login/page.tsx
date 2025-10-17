@@ -23,12 +23,17 @@ type UserType = {
 const page = () => {
   const [variant, setVariant] = useState<VariantProps>("LOGIN");
 
+  const [userRole, setUserRole] = useState(["user", "admin", "guest"])
+  const [roleBox, setRoleBox] = useState(false)  
+  const [selectRole, setSelectRole] = useState("")  
   const [userData, setUserData] = useState<UserType>({
     name: "",
     email: "",
     password: "",
     confirm_password: "",
   });
+
+  console.log(selectRole)
 
   const [showPassword, setShowPassword] = useState<Boolean>(false);
 
@@ -215,6 +220,17 @@ const page = () => {
               ) : (
                 <></>
               )}
+
+              <div  onClick={() => setRoleBox(!roleBox)} className="relative">
+                <h2 >Role</h2>
+                <div className={` my-4 bg-white w-fit z-50 overflow-hidden shadow-2xl transition-all duration-300 cursor-pointer absolute top-0 left-12 ${roleBox ? "h-[125px]" : "h-[0rem]"}`}>
+                  {userRole.map((sItem) => {
+                    return <div onClick={() => setSelectRole(sItem)} className="w-fit h-[2.5rem] px-4 py-2" key={sItem}>
+                      {sItem}
+                      </div>
+                   })}
+                </div>
+             </div>
 
               <div className="w-full mt-6">
                 <Button type={"submit"} fullWidth secondary>
