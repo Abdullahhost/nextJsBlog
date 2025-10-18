@@ -32,7 +32,7 @@ const ProfileStatus: React.FC = () => {
 
 
   return (
-    <div ref={userRef} className="w-full flex flex-col items-center justify-center relative">
+    <div ref={userRef} className="w-full scale-90 origin-left flex flex-col items-center justify-center relative">
 
       <div className={clsx(`
         //bg-[linear-gradient(rgba(88,86,214,.5),#2B2A6D)]
@@ -48,6 +48,7 @@ const ProfileStatus: React.FC = () => {
          border-l-2
          border-r-2
          border-slate-200
+
          
  
         ${userPannel ? "showMenu" : "closeMenu"}

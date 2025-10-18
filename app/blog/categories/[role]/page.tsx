@@ -5,8 +5,6 @@ import Topbar from "@/app/components/header/topbar";
 
 import Categories from "@/app/components/categories/page";
 import BlogList from "../../components/BlogList";
-import { usePathname } from "next/navigation";
-// import { getCategoriesBlog } from "@/app/hooks/getAllBlog";
 import { getCategoriesData } from "@/app/libs/getData";
 import Link from "next/link";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
@@ -45,6 +43,9 @@ export default async function Home({ params, searchParams }: { params: { role: s
     }
 
 
+      const filteredData:any[] = allBlog?.filter((item: any) => item?.title.toLowerCase().includes(searchParams?.query)) || []
+
+
     // const { data } = await getCategoriesBlog(params?.role);
 
     return (
@@ -60,7 +61,7 @@ export default async function Home({ params, searchParams }: { params: { role: s
 
                         {itemCount! > 0 ? (
                             <>
-                                <BlogList data={allBlog} />
+                                <BlogList data={searchParams?.query ? filteredData : allBlog} />
                             </>
                         ) : (
                             <div>
@@ -103,17 +104,17 @@ export default async function Home({ params, searchParams }: { params: { role: s
                         }
                     </div>
                     <div>
-                        {page > totalPage - 1 ? (
+                        { page > totalPage - 1 ? (
                             <>
                                 <div aria-disabled={true}></div>
                             </>
-                        ) : (
+                        ) : filteredData?.length > 3 && 
                             <>
                                 <Link arai-label="Next Page" className=" hover:text-green-500  text-sm px-4 py-2  transition" href={`${!page ? `?page=${2}` : `?page=${nextPage}`}`}>
                                     <BsArrowRight />
                                 </Link>
                             </>
-                        )}
+                        }
                     </div>
                 </div>
             </div>

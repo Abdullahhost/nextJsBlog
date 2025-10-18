@@ -56,7 +56,7 @@ const SideBar = () => {
         top-0 left-0
         translate-x-[-300px]
         transition
-        w-[220px] 
+        w-[200px] 
         min-h-[100vh] 
         bg-[rgb(43,42,109)]
         dark:bg-black

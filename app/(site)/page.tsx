@@ -10,9 +10,10 @@ import { getData } from "../libs/getData";
 import { MotionDiv } from "../blog/components/MotionDiv";
 // import SearchResult from "../components/SearchResult";
 import { getAllBlog } from "../hooks/getAllBlog";
+import Image from "next/image";
 // import { BlogInterface } from "../blog/create/page";
 
-
+import bannerImage from '@/public/bannerImage.jpg'
 export default async function Home({ searchParams }: any) {
 
   const perPage: number = 4;
@@ -67,7 +68,7 @@ export default async function Home({ searchParams }: any) {
   return (
     <main className="flex items-start justify-start w-full">
       <SideBar />
-      <div className="flex flex-col w-full ml-0 lg:ml-[220px] pb-10 relative ">
+      <div className="flex flex-col w-full ml-0 lg:ml-[200px] pb-10 relative ">
         <Topbar />
         {/* <div className="absolute top-[70px] left-[0px] md:left-[25px] text-white z-50 bg-[#00000080] backdrop-blur-md">
 
@@ -75,9 +76,21 @@ export default async function Home({ searchParams }: any) {
             return <SearchResult key={index} searchData={ele} index={index} />
           })}
         </div> */}
-        <h2 className="text-2xl text-center font-semibold lg:text-start transition text-[#4d4b4d] pt-10 mb-4 dark:text-white px-6 mt-10 md:mt-0">
+
+        <div className="h-[120px] relative mb-4 mt-2">
+ <Image  
+            className="h-[120px] object-cover -z-10 absolute top-0 left-0"
+            src={"/banner.jpg"}
+            alt="Banner Image"
+            width={5000}
+            height={5000}
+          />
+        <h2 className="text-2xl text-center font-semibold lg:text-start transition text-[#ffffff] pt-4 mb-2 dark:text-white px-6 mt-10 md:mt-0">
           Blog Page
         </h2>
+        <p className="text-white px-6 text-sm">Simple Blog System for Company</p>
+        </div>
+         
         <div className="w-full flex flex-col-reverse lg:flex-row gap-2 items-start justify-center lg:justify-between" >
 
 

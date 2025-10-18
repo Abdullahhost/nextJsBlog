@@ -20,10 +20,9 @@ const BlogList = ({ data }: any) => {
 			opacity: 1
 		}
 	};
-
 	return (
 		<>
-			{data!?.map((ele: BlogInterface) => {
+		{data?.length !== 0 ? data!?.map((ele: BlogInterface) => {
 				return (
 					<MotionDiv
 						variants={item}
@@ -70,7 +69,9 @@ const BlogList = ({ data }: any) => {
 					</MotionDiv>
 
 				);
-			})}
+			})
+		 : "There is No data "}
+		
 		</>
 	)
 }

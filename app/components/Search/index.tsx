@@ -22,10 +22,6 @@ const Search = () => {
         router.replace(`${pathName}?${params.toString()}`)
 
     }
-
-    const handleKeyDown = (e: any) => {
-        console.log(e?.key);
-    }
     return (
         <div className='w-full'>
             <div className="relative w-full md:w-3/4 hidden md:block ">
@@ -36,7 +32,6 @@ const Search = () => {
                     name="search"
                     autoComplete='false'
                     onChange={(e) => handleSearch(e.target.value)}
-                    onKeyDown={handleKeyDown}
                     defaultValue={searchParams?.get("query")?.toString()}
                 />
                 <span

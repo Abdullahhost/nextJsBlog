@@ -19,8 +19,8 @@ const Categories = async () => {
     });
     return (
         <div className="w-full lg:w-fit mr-6 flex flex-col items-center">
-            <div className="w-full md:w-3/4 my-[20px] px-4  md:px-4  lg:max-w-[300px] md:min-w-[300px] md:mr-6 lg:mr-0">
-                <h4 className=" bg-transparent shadow-sm dark:shadow-[#846af8bd] md:shadow-md text-center md:text-start  p-1 md:p-2 mb-4 dark:text-white border-b-[#5555552f] dark:border-b-[#252525] border-b-2 ">Categories</h4>
+            <div className="w-full md:w-3/4 mb-[20px] px-4 py-0  md:px-4  lg:max-w-[300px] md:min-w-[300px] md:mr-6 lg:mr-0">
+                <h4 className=" bg-transparent text-center md:text-start px-1 md:p-2 mb-4 dark:text-white border-b-[#5555552f] dark:border-b-[#252525] border-b-2 ">Categories</h4>
                 {uniqueValue!?.map((ele: string) => {
                     return <div key={ele} className="text-center md:text-start leading-8">
                         <li className="text-[#4e4e4e] hover:underline dark:text-[#d6d7d8]" style={{ listStyleType: "none" }}>
@@ -35,7 +35,7 @@ const Categories = async () => {
                 })}
             </div>
             <div className=" w-full md:w-3/4 my-[20px]  px-4  md:px-4  lg:max-w-[300px] md:min-w-[300px] md:mr-6 lg:mr-0">
-                <h4 className=" bg-transparent shadow-sm dark:shadow-[#846af8bd] md:shadow-md text-center md:text-start  p-1 md:p-2 mb-4 dark:text-white border-b-[#5555552f] dark:border-b-[#252525] border-b-2 ">Recent Five Post</h4>
+                <h4 className=" bg-transparent text-center md:text-start  p-1 md:p-2 mb-4 dark:text-white border-b-[#5555552f] dark:border-b-[#252525] border-b-2 ">Recent Five Post</h4>
                 {data!?.map((ele: BlogInterface) => {
                     return <div key={ele?.title} className="text-center md:text-start leading-8">
                         <li className="text-[#4e4e4e] hover:underline dark:text-[#d6d7d8] text-start" style={{ listStyleType: "none" }}>
