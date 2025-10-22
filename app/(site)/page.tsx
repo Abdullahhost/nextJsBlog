@@ -8,45 +8,56 @@ import BlogList from "../blog/components/BlogList";
 import Link from "next/link";
 import { getData } from "../libs/getData";
 import { MotionDiv } from "../blog/components/MotionDiv";
-// import SearchResult from "../components/SearchResult";
+
 import { getAllBlog } from "../hooks/getAllBlog";
 import Image from "next/image";
-// import { BlogInterface } from "../blog/create/page";
 
-import bannerImage from '@/public/bannerImage.jpg'
 export default async function Home({ searchParams }: any) {
 
-  const perPage: number = 4;
-
+  const perPage: number = 2;
+  
   let page = parseInt(searchParams.page, 10);
   !page || page < 1 ? 1 : page;
-
+  
+  
   const itemData = await getData(perPage, page);
-
+  
   const itemCount = itemData?.countBlog;
   const allBlog = itemData?.items;
-
+  
   const totalPage = Math.ceil(itemCount! / perPage);
-
+  
   const prevPage = page - 1 > 0 ? page - 1 : 1;
   const nextPage = page + 1;
+  
+  const pageNumber: number[] = []
 
 
-  const pageNumber: number[] = [];
+  const maxPagesToShow = 5;
+    let startPage: number, endPage: number;
 
-  // const offsetNumber: number = 3;
-  // for (let i = page - offsetNumber; i <= page + offsetNumber; i++) {
-  //   if (i >= 1 && i <= totalPage) {
+    if (totalPage <= maxPagesToShow) {
+      // Show all pages
+      startPage = 1;
+      endPage = totalPage;
+    } else {
+      // Determine a sliding window
+      const middle = Math.ceil(maxPagesToShow / 2);
+      if (page <= middle) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (page + middle > totalPage) {
+        startPage = totalPage - maxPagesToShow + 1;
+        endPage = totalPage;
+      } else {
+        startPage = page - (middle - 1);
+        endPage = page + (middle - 1);
+      }
+    }
 
-  //     pageNumber.push(i);
-  //   }
-  // }
-
-  for (let x = 1; x <= totalPage; x++) {
-    pageNumber.push(x);
-  }
-
-
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumber.push(i);
+    }
   const allData = await getAllBlog();
 
   const filteredData = allData?.data?.filter((item: any) => item?.title.toLowerCase().includes(searchParams?.query))
@@ -70,29 +81,21 @@ export default async function Home({ searchParams }: any) {
       <SideBar />
       <div className="flex flex-col w-full ml-0 lg:ml-[200px] pb-10 relative ">
         <Topbar />
-        {/* <div className="absolute top-[70px] left-[0px] md:left-[25px] text-white z-50 bg-[#00000080] backdrop-blur-md">
-
-          {filteredData?.map((ele: BlogInterface, index: number) => {
-            return <SearchResult key={index} searchData={ele} index={index} />
-          })}
-        </div> */}
-
-        <div className="h-[120px] relative mb-4 mt-2">
- <Image  
+        <div className="h-[120px] relative mb-8 mt-2">
+        <Image  
             className="h-[120px] object-cover -z-10 absolute top-0 left-0"
             src={"/banner.jpg"}
             alt="Banner Image"
             width={5000}
             height={5000}
           />
-        <h2 className="text-2xl text-center font-semibold lg:text-start transition text-[#ffffff] pt-4 mb-2 dark:text-white px-6 mt-10 md:mt-0">
+        <h2 className="text-2xl font-semibold lg:text-start transition text-[#ffffff] pt-4 mb-2 dark:text-white px-6 mt-10 md:mt-0">
           Blog Page
         </h2>
         <p className="text-white px-6 text-sm">Simple Blog System for Company</p>
         </div>
          
         <div className="w-full flex flex-col-reverse lg:flex-row gap-2 items-start justify-center lg:justify-between" >
-
 
           <MotionDiv
 
@@ -128,9 +131,8 @@ export default async function Home({ searchParams }: any) {
 
         {searchParams?.query ? (
           ""
-        ) :
-          <div className="px-6 py-3 flex gap-4 w-full items-center mt-10">
-            <div>
+        ) : <div className="px-4 md:px-6 py-3 flex gap-2 md:gap-4 w-full items-center mt-10 overflow-auto">
+              <div>
 
               {!searchParams.page || page === 1 ? (
                 <>
@@ -138,29 +140,51 @@ export default async function Home({ searchParams }: any) {
                 </>
               ) : (
                 <>
-
+      
                   <Link aria-label="Previous Page" className="
-                 hover:bg-[#2B2A6D] border dark:border-neutral-600 shadow-md dark:shadow-neutral-500
-                 hover:text-white hover:dark:bg-[#399B19] text-sm px-4 py-2 rounded-2xl
-                 dark:bg-[#3D3D3D] transition"
-                    href={`?page=${prevPage}`}>
-                    Previous
+                  hover:bg-[#2B2A6D] border dark:border-neutral-600 shadow-md dark:shadow-neutral-500
+                  hover:text-white hover:dark:bg-[#399B19] text-sm px-2 md:px-4 py-1 lg:py-2 rounded-2xl
+                  dark:bg-[#3D3D3D] transition hidden md:block"
+                  href={`?page=${prevPage}`}>
+                      Previous
                   </Link>
+                  <Link aria-label="Previous Page" className="
+                  hover:bg-[#2B2A6D] border dark:border-neutral-600 shadow-md dark:shadow-neutral-500
+                  hover:text-white hover:dark:bg-[#399B19] text-sm px-2 md:px-4 py-1 lg:py-2 rounded-2xl
+                  dark:bg-[#3D3D3D] transition block md:hidden"
+                  href={`?page=${prevPage}`}>
+                    ⇠ 
+                  </Link>
+
+              
+           
                 </>
               )}
+            </div>
+            <div>
+             {
+             pageNumber[0] > 1 && <span className="text-gray-500 flex items-center px-1">...</span>
+            }
             </div>
             <div >
               {
                 pageNumber?.map((singleNumber, index) => (
 
                   <Link className={`hover:bg-[#2B2A6D] hover:text-white shadow-md
-                 dark:shadow-neutral-500  hover:dark:bg-[#399B19] px-4 text-sm 
-                 py-2 rounded-lg mx-2 transition border dark:border-neutral-600
+                 dark:shadow-neutral-500  hover:dark:bg-[#399B19] px-2 md:px-4 text-sm 
+                 py-1 md:py-2 rounded-lg mx-1 lg:mx-2 transition border dark:border-neutral-600
                  ${page === singleNumber ? "bg-[#2B2A6D] text-white  dark:bg-[#399B19]" : ''} ${!page && singleNumber === 1 ? "bg-[#2B2A6D] text-white  dark:bg-[#399B19]" : ""}  `} key={index} href={`?page=${singleNumber}`}>
                     {singleNumber}
                   </Link>
                 ))
               }
+            </div>
+            <div>
+              
+           {
+              pageNumber[pageNumber.length - 1] < totalPage && <span className="text-gray-500 flex items-center px-1">...</span>
+            }
+
             </div>
             <div>
               {page > totalPage - 1 ? (
@@ -171,14 +195,24 @@ export default async function Home({ searchParams }: any) {
                 <>
                   {itemCount! > 4 && (
 
-                    <Link arai-label="Next Page" className="hover:bg-[#2B2A6D] dark:border-neutral-600 shadow-md dark:shadow-neutral-500  hover:text-white hover:dark:bg-[#399B19] text-sm px-4 py-2 rounded-2xl border dark:bg-[#3D3D3D]  transition" href={`${!page ? `?page=${2}` : `?page=${nextPage}`}`}>
+                    <>
+
+                    <Link arai-label="Next Page" className="hover:bg-[#2B2A6D] dark:border-neutral-600 shadow-md dark:shadow-neutral-500  hover:text-white hover:dark:bg-[#399B19] text-sm px-2 lg:px-4 py-1 lg:py-2 rounded-2xl border dark:bg-[#3D3D3D]  transition hidden md:block" href={`${!page ? `?page=${2}` : `?page=${nextPage}`}`}>
                       Next
                     </Link>
+                    <Link arai-label="Next Page" className="hover:bg-[#2B2A6D] dark:border-neutral-600 shadow-md dark:shadow-neutral-500  hover:text-white hover:dark:bg-[#399B19] text-sm px-2 lg:px-4 py-1 lg:py-2 rounded-2xl border dark:bg-[#3D3D3D]  transition block md:hidden" href={`${!page ? `?page=${2}` : `?page=${nextPage}`}`}>
+                   ⇢
+                    </Link>
+
+                    </>
+                
                   )}
+
                 </>
               )}
             </div>
-          </div>}
+          </div>
+          }
       </div>
     </main>
   );
