@@ -25,7 +25,7 @@ const SideLink: React.FC<ISideLinkProps> = ({
 }) => {
     const router = useRouter();
     return (
-        <div onClick={() => router.push(`${linkUrl}`)} className="px-6 py-3 flex gap-8 mt-2 items-center hover:bg-[rgba(255,255,255,0.2)] hover:border-l-4 transition-[0.2s]">
+        <div onClick={() => router.push(`${linkUrl}`)} className="px-6 py-3 flex gap-8 items-center hover:bg-[rgba(255,255,255,0.2)] hover:border-l-4 transition-[0.2s]">
             <Icon color={iconColor} size={iconSize} />
             <Link className="text-[14px]" href={linkUrl}>
                 {linkName}

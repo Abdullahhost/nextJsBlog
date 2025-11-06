@@ -14,7 +14,6 @@ import ToggleBtn from "@/app/components/Button/ToggleBtn";
 const page = async ({ params }: { params: { id: string } }) => {
 
   const { data } = await getSingleBlog(params?.id);
-
   return (
     <div className="flex items-start justify-start w-full my-4">
       <div className="">
@@ -26,7 +25,7 @@ const page = async ({ params }: { params: { id: string } }) => {
       <div className="flex flex-col w-full ml-0 lg:ml-[220px]">
         <div className="px-6 flex items-start gap-6 mt-10 flex-wrap lg:flex-nowrap">
           <div className="w-full">
-            {data!?.length > 0 ? <>
+            {data!?.length >= 0 ? <>
 
               {data!?.map((ele: BlogInterface) => {
                 return <div key={ele?.title}>
@@ -60,7 +59,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                   </div>
 
                   <br />
-                  <p className="text-sm dark:text-[#d6d7d8] whitespace-pre-line">{ele?.description}</p>
+                  <pre className="text-[14px] text-justify text-[##4E5365] tracking-wide dark:text-[#d6d7d8] font-[inter] whitespace-pre-line">{ele?.description}</pre>
                 </div>
               })}
             </> : <>

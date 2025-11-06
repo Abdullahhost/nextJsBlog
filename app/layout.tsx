@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body
-        className={`${inter.className} dark:bg-black bg-slate-50 dark:text-white`}
+        className={`${inter.className} dark:bg-[#0e0e0e] bg-slate-50 dark:text-[#dbdada]`}
       >
         <ThemeProvider>
           <ToasterContext />

@@ -8,7 +8,7 @@ import clsx from "clsx";
 const ProfileStatus: React.FC = () => {
   const { status, data: session } = useSession();
 
-  const [userPannel, setUserPannel] = useState<Boolean>(false);
+  const [userPannel, setUserPannel] = useState<Boolean>(true);
 
   const userRef = useRef<HTMLDivElement>(null);
 

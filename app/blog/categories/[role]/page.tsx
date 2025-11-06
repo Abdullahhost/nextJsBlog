@@ -12,7 +12,7 @@ import { MotionDiv } from "../../components/MotionDiv";
 export default async function Home({ params, searchParams }: { params: { role: string }, searchParams: any }) {
 
 
-    const perPage: number = 1;
+    const perPage: number = 4;
 
     let page = parseInt(searchParams.page, 10);
     !page || page < 1 ? 1 : page;

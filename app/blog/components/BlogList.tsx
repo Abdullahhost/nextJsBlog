@@ -62,7 +62,7 @@ const BlogList = ({ data }: any) => {
 							</div>
 
 						</div>
-						<div className="capitalize tracking-tighter py-3 leading-6">{ele.title}</div>
+						<div className="capitalize text-[15px] text-[#282828] dark:text-[#e1e1e1]  py-3 leading-6">{ele.title}</div>
 						<div className="text-sm">{truncateString(ele.description)}...
 							<Link href={`/blog/${ele.title}`} className="whitespace-nowrap font-semibold text-[#29639E]">Continue Reading</Link>
 						</div>

@@ -10,11 +10,10 @@ import { getData } from "../libs/getData";
 import { MotionDiv } from "../blog/components/MotionDiv";
 
 import { getAllBlog } from "../hooks/getAllBlog";
-import Image from "next/image";
 
 export default async function Home({ searchParams }: any) {
 
-  const perPage: number = 2;
+  const perPage: number = 4;
   
   let page = parseInt(searchParams.page, 10);
   !page || page < 1 ? 1 : page;
@@ -80,21 +79,7 @@ export default async function Home({ searchParams }: any) {
     <main className="flex items-start justify-start w-full">
       <SideBar />
       <div className="flex flex-col w-full ml-0 lg:ml-[200px] pb-10 relative ">
-        <Topbar />
-        <div className="h-[120px] relative mb-8 mt-2">
-        <Image  
-            className="h-[120px] object-cover -z-10 absolute top-0 left-0"
-            src={"/banner.jpg"}
-            alt="Banner Image"
-            width={5000}
-            height={5000}
-          />
-        <h2 className="text-2xl font-semibold lg:text-start transition text-[#ffffff] pt-4 mb-2 dark:text-white px-6 mt-10 md:mt-0">
-          Blog Page
-        </h2>
-        <p className="text-white px-6 text-sm">Simple Blog System for Company</p>
-        </div>
-         
+        <Topbar />  
         <div className="w-full flex flex-col-reverse lg:flex-row gap-2 items-start justify-center lg:justify-between" >
 
           <MotionDiv
@@ -123,7 +108,7 @@ export default async function Home({ searchParams }: any) {
             )
             }
           </MotionDiv>
-          <div className="w-full lg:w-fit mr-6">
+          <div className="w-full lg:w-fit">
             <Categories />
           </div>
         </div>

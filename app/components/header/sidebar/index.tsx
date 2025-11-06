@@ -5,7 +5,9 @@ import {
   BsPencilSquare,
   BsPeople,
   BsPersonLinesFill,
-  BsChatDotsFill
+  BsChatDotsFill,
+  BsGlobeAmericas,
+  BsGearWideConnected
 } from "react-icons/bs";
 import ProfileStatus from "../../ProfileStatus";
 import SideLink from "./SideLink";
@@ -59,7 +61,7 @@ const SideBar = () => {
         w-[200px] 
         min-h-[100vh] 
         bg-[rgb(43,42,109)]
-        dark:bg-black
+        dark:bg-[#0e0e0e]
         border-r-[.1px] 
         dark:border-[rgba(145,145,145,0.5)] 
          lg:translate-x-[0px]
@@ -84,14 +86,29 @@ const SideBar = () => {
         <UserExp />
       </div>
 
-      <div className="transition mt-8">
+      <div className="transition mt-4">
 
+        <SideLink
+          icon={BsGithub}
+          iconColor="white"
+          iconSize={18}
+          linkName="Github"
+          linkUrl="https://github.com/Abdullahhost"
+        />
         <SideLink
           icon={BsPeople}
           iconColor="white"
           iconSize={18}
-          linkName="Ai Project"
-          linkUrl="https://notes-chatbot.vercel.app"
+          linkName="Portfolio"
+          linkUrl="https://mamun-dev-seven.vercel.app"
+        />
+
+        <SideLink
+          icon={BsGearWideConnected}
+          iconColor="white"
+          iconSize={18}
+          linkName="MadrashahApp"
+          linkUrl="https://madrasah-app.vercel.app"
         />
         <SideLink
           icon={BsChatDotsFill}
@@ -101,19 +118,26 @@ const SideBar = () => {
           linkUrl="https://mern-chat-app-eta-two.vercel.app"
         />
         <SideLink
+          icon={BsPersonLinesFill}
+          iconColor="white"
+          iconSize={18}
+          linkName="NexoqodApp"
+          linkUrl="https://nexoqod-website.vercel.app"
+        />
+        <SideLink
+          icon={BsGlobeAmericas}
+          iconColor="white"
+          iconSize={18}
+          linkName="WorldClock"
+          linkUrl="https://world-time-one.vercel.app/"
+        />
+        <SideLink
           icon={BsPencilSquare}
           iconColor="white"
           iconSize={18}
           linkName="Write Blog"
           linkUrl="/blog/create"
           onClick={handleClick}
-        />
-        <SideLink
-          icon={BsGithub}
-          iconColor="white"
-          iconSize={18}
-          linkName="Github"
-          linkUrl="https://github.com/Abdullahhost"
         />
         <SideLink
           icon={BsPersonLinesFill}
